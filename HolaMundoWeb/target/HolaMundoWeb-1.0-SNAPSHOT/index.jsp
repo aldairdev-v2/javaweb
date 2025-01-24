@@ -17,7 +17,7 @@
         <% String hola = "Hola mundo desde Java";%>
         
         <%--MOSTRAR CÓDIGO--%>
-        <%= hola%>
+        <%= hola %>
         
         <h2>Prueba Github</h2>
         
