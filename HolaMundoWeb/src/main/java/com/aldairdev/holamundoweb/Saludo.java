@@ -41,7 +41,7 @@ public class Saludo extends HttpServlet {
 //            out.println("<h1>Alan Aldair Chávez Hernández</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
- out.println("hola mundo");
+              out.println("hola mundo");
         }
     }
 
