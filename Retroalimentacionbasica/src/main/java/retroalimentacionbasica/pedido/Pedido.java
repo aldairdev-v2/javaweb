@@ -1,7 +1,6 @@
 
 package retroalimentacionbasica.pedido;
 
-
 public class Pedido {
     
     private String nombrepedido;
@@ -40,8 +39,5 @@ public class Pedido {
     public void setTienda(String tienda) {
         this.tienda = tienda;
     }
-    
-    
-     
-    
+
 }
