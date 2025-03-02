@@ -83,8 +83,6 @@ for(Deporte depgeneral:deporteconjunto){
             System.out.println("Deporte: "+depgeneral.getNombre());
             System.out.println("Tipo: "+depgeneral.getTipo());
             System.out.println("Jugador(es): "+depgeneral.getNum_jugadores());
-            
-    
 }
 
 //        // Mostrar lista
