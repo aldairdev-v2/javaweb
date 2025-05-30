@@ -1,0 +1,5 @@
+package com.practica.app.controlador;
+
+public @interface GettMapping {
+
+}
