@@ -8,6 +8,6 @@ public class MiPrimerControlador {
 
 	@GetMapping(value="Saludo")
 	public String saludo() {
-		return "Hola Mundo!";
+		return "Hola Mundo!!";
 	}
 }
