@@ -20,7 +20,7 @@ public class UsuariosSQL {
     
     public void crearUsuario(String usuario, String password, int activo){
         try {
-            String insertausuario = "insert into usarios(usario, password, activo) values(?,?,?)),";
+            String insertausuario = "insert into usuarios(usuario, password, activo) values(?,?,?)";
             
             PreparedStatement ps = ConexionBD.obtieneConexion().prepareCall(insertausuario);
             
@@ -58,9 +58,9 @@ public class UsuariosSQL {
     
     public static void main(String [] args){
         UsuariosSQL prueba = new UsuariosSQL();
-        prueba.crearUsuario("Mariana", "mar",1);
+        prueba.crearUsuario("Noemi","mimi",1);
         
-        boolean resultado = prueba.validarUsuario("Aldair", "admin");
+        boolean resultado = prueba.validarUsuario("Noemi","mimi");
         System.out.println(resultado);
     }
     
