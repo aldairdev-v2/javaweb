@@ -20,16 +20,18 @@ public class UsuariosSQL {
     
     public void crearUsuario(String usuario, String password, int activo){
         try {
-            String insertausuario = "insert into usuarios(usuario, password, activo) values(?,?,?)";
+            String insertausuario = "insert into usuarios values(?, ?,?,?)";
             
             PreparedStatement ps = ConexionBD.obtieneConexion().prepareCall(insertausuario);
             
             //Nos. indican posición de "???"
-            ps.setString(1, usuario);
-            ps.setString(2, password);
-            ps.setInt(3, activo);
-            int resultado=ps.executeUpdate(); //ResutSet
-            System.out.println("resultado insert "+resultado);
+            ps.setInt(1, 2);
+            ps.setString(2, usuario);
+            ps.setString(3, password);
+            ps.setInt(4, activo);
+            
+            int resultado = ps.executeUpdate(); //ResultSet
+            System.out.println("Resultado insert: " + resultado);
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosSQL.class.getName()).log(Level.SEVERE, null, ex);
         }         
@@ -58,10 +60,10 @@ public class UsuariosSQL {
     
     public static void main(String [] args){
         UsuariosSQL prueba = new UsuariosSQL();
-        prueba.crearUsuario("Noemi","mimi",1);
+        //prueba.crearUsuario("Aldair","admin",1);
         
-        boolean resultado = prueba.validarUsuario("Noemi","mimi");
-        System.out.println(resultado);
+       boolean resultado = prueba.validarUsuario("Aldair","admin");
+       System.out.println(resultado);
     }
     
 }
