@@ -26,7 +26,7 @@ public class ConexionBD {
         try {
            // Class.forName("org.postegresql.Driver");
             conectar = DriverManager.getConnection(cadena, usuario, contrasenia);
-            JOptionPane.showMessageDialog(null,"Conexión exitosa a la BD!");
+           // JOptionPane.showMessageDialog(null,"Conexión exitosa a la BD!");
             
         } catch(SQLException e){
             JOptionPane.showMessageDialog(null,"ERROR de conexión a la BD!"+ e.getMessage());

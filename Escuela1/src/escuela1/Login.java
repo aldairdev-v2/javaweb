@@ -4,6 +4,9 @@
  */
 package escuela1;
 
+import escuela1.usuariossql.UsuariosSQL;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author CHAVEZ
@@ -54,7 +57,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        psspassword.setText("jPasswordField1");
+        psspassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                psspasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,8 +111,25 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //UsuariosSql = validarusuario new UsuariosSql()
+        String usuario = txtusuario.getText();
+        String password = new String(psspassword.getPassword());
+
+        UsuariosSQL usuariobd = new UsuariosSQL();
+        boolean existe = usuariobd.validarUsuario(usuario, password);
+        if (existe) {
+            Principal menu = new Principal();
+            menu.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "el usuario no existe");
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void psspasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psspasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_psspasswordActionPerformed
 
     /**
      * @param args the command line arguments

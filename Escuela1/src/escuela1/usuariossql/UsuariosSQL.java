@@ -5,6 +5,7 @@
 package escuela1.usuariossql;
 
 import escuela1.ConexionBD;
+import escuela1.Principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,58 +13,64 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author CHAVEZ
  */
 public class UsuariosSQL {
-    
-    public void crearUsuario(String usuario, String password, int activo){
+
+    public void crearUsuario(String usuario, String password, int activo) {
         try {
-            String insertausuario = "insert into usuarios values(?, ?,?,?)";
-            
+            String insertausuario = "insert into usuarios(usuario, password, activo) values(?,?,?)";
+
             PreparedStatement ps = ConexionBD.obtieneConexion().prepareCall(insertausuario);
-            
+
             //Nos. indican posición de "???"
-            ps.setInt(1, 2);
             ps.setString(2, usuario);
             ps.setString(3, password);
             ps.setInt(4, activo);
-            
+
             int resultado = ps.executeUpdate(); //ResultSet
             System.out.println("Resultado insert: " + resultado);
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosSQL.class.getName()).log(Level.SEVERE, null, ex);
-        }         
+        }
     }
-    
-    public boolean validarUsuario(String usuario, String password){
-        
+
+    public boolean validarUsuario(String usuario, String password) {
+
         boolean existe = false;
         try {
-            String validarusuario = "select * from usuarios where usuario = ? AND password = ?";
+            String validarusuario = "select count(*) as existe from usuarios where usuario = ? AND password = ?";
             PreparedStatement ps = ConexionBD.obtieneConexion().prepareStatement(validarusuario);
-            
+
             ps.setString(1, usuario);
             ps.setString(2, password);
-            
+
             ResultSet rs = ps.executeQuery();
-            
-            rs.next();
-            existe = true;
-            
+
+            while (rs.next()) {
+                if (rs.getInt("existe") == 1) {
+                    
+                    existe = true;
+                }
+
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return existe;
     }
-    
-    public static void main(String [] args){
+
+    public static void main(String[] args) {
         UsuariosSQL prueba = new UsuariosSQL();
-        //prueba.crearUsuario("Aldair","admin",1);
-        
-       boolean resultado = prueba.validarUsuario("Aldair","admin");
-       System.out.println(resultado);
+        // prueba.crearUsuario("Aldair","admin",1);
+        //prueba.crearUsuario("Noemí","mimi",1);
+
+        boolean resultado = prueba.validarUsuario("Aldair", "admin");
+        System.out.println(resultado);
     }
-    
+
 }
